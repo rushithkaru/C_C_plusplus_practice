@@ -15,20 +15,17 @@ private:
 
 public:
 
-    Task2();
+    Task2(int A);
     void setB();
-    void getB();
-    void getC();
-    void powerOf();
+    void AtoThePowerB();
     int multiply(int result[], int result_size);
     ~Task2();
 
 };
 
-Task2::Task2()
+Task2::Task2(int A)
 {
-    cout << "Enter a number (0-99999): ";
-    cin >> this->A;
+    this->A = A;
     setB();
     
 }
@@ -46,11 +43,6 @@ void Task2::setB(){
 
     B = reverse;
 }
-
-void Task2::getB(){
-   cout << B;
-}
-
 
 int Task2::multiply(int result[], int result_size){
     int carrier = 0;
@@ -70,7 +62,7 @@ int Task2::multiply(int result[], int result_size){
     return result_size;
 }
 
-void Task2::powerOf(){
+void Task2::AtoThePowerB(){
     int result[MAX];
     int result_size = 0;
     int temp_val = A;
@@ -96,7 +88,10 @@ Task2::~Task2()
 
 int main(int argc, char const *argv[])
 {
-    Task2 task2;
-    task2.powerOf();
+    int A;
+    cout << "Enter a number (0-99999): ";
+    cin >> A;
+    Task2 task2(A);
+    task2.AtoThePowerB();
     return 0;
 }
