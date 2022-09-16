@@ -1,7 +1,4 @@
-#include <cstdio>
-#include <string>
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 #define MAX 1000000
