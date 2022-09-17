@@ -1,7 +1,7 @@
 //author Rushith Karunaratne
 
 #include "LookUp.h"
-#include <stdio.h>
+
 
 /*Used to multiply values to avoid needing floating point numbers */
 #define BASE 10000

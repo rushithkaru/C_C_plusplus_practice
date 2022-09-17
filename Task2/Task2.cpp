@@ -1,9 +1,15 @@
+/*
+* Author: Rushith Karunaratne
+* Task2 class
+* 
+*/
+
 #include <iostream>
 using namespace std;
 
-#define MAX 1000000
+#define MAX_LEN 1000000
 
-/*Class to C=A^B where B is the reverse of the digits of A.
+/*Class to find C=A^B where B is the reverse of the digits of A.
 * Since input range is 0-99999 the code needs to manage integer 
 * overflow.
 */
@@ -17,9 +23,12 @@ private:
 public:
     //Public method definitions
     Task2(int A);
-    void setB();
-    void AtoThePowerB();
+    int reverseA();
+    int getB();
+    int getA();
+    string AtoThePowerB();
     int multiply(int result[], int result_size);
+    string display();
  
 
 };
@@ -27,10 +36,10 @@ public:
 Task2::Task2(int A)
 {
     this->A = A;
-    setB();  
+    B = reverseA();  
 }
 //Setter for B based on the value of A
-void Task2::setB(){
+int Task2::reverseA(){
     int n = A;
     int reverse = 0;
     int remainder;
@@ -41,9 +50,18 @@ void Task2::setB(){
         reverse = reverse * 10 + remainder;
         n /= 10;
     }
-    //set value of B
-    B = reverse;
+    //return reverse of A
+    return reverse;
 }
+
+int Task2::getB(){
+    return this->B;
+}
+
+int Task2::getA(){
+    return this->A;
+}
+
 
 /* Custom multiplication method to deal with very large numbers.*/
 int Task2::multiply(int result[], int result_size){
@@ -67,8 +85,12 @@ int Task2::multiply(int result[], int result_size){
 }
 
 //Function to perform A^B where B is the reverse of A
-void Task2::AtoThePowerB(){
-    int result[MAX];
+string Task2::AtoThePowerB(){
+    if (A <= 0 || A >= 99999) {
+        throw std::invalid_argument( "received invalid input" );
+    }
+
+    int result[MAX_LEN];
     int result_size = 0;
     int temp_val = A;
 
@@ -83,27 +105,17 @@ void Task2::AtoThePowerB(){
         result_size = multiply(result,result_size);
     }
 
-    //print values in result array.
+    //Get values in result array and create string.
+    string C = "";
     cout << "Result: " << A << "^" << B << " is \n";
     for (int i = result_size - 1; i >= 0; i--)
-    {
+    {   
+        C.append(to_string(result[i]));
         cout << result[i];
     }
+    cout << endl;
+    return C;
 }
 
 
-int main(int argc, char const *argv[])
-{
-    //Get user input and find C=A^B
-    int A;
-    cout << "Enter a number (0-99999): ";
-    cin >> A;
-    //Check input range
-    if (A <= 0 || A >= 99999) {
-        cout << "Invlalid input\n";
-        return 0;
-    }
-    Task2 task2(A);
-    task2.AtoThePowerB();
-    return 0;
-}
+
