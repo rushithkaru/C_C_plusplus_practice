@@ -96,6 +96,7 @@ typedef struct
 {
     const unsigned int mantissa;
     const int exponent;
+    const int offset;
 } FloatingPoint;
 
 FloatingPoint convert(int ADC_val,const int lookUp[][2]);
