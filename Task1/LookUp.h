@@ -1,4 +1,6 @@
-const int lookUp[91][2] = {
+//author Rushith Karunaratne
+//Lookup Table 
+const int lookUp[][2] = {
 { 100, 1696 }, 
 { 110, 1909 }, 
 { 120, 2118 }, 
@@ -92,11 +94,6 @@ const int lookUp[91][2] = {
 { 1000, 14073 },
 };
 
-typedef struct 
-{
-    const unsigned int mantissa;
-    const int exponent;
-    const int offset;
-} FloatingPoint;
 
-FloatingPoint convert(int ADC_val,const int lookUp[][2]);
+
+int convert_ADC_val_to_pressure(int ADC_val);
